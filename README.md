@@ -1,9 +1,12 @@
-# Week 0
+# Week 12
 
-This week is meant to give you a very basic introduction to ... In particular, we will focus on the following:
+This week's lab is meant to introduce you to the idea of time series: curve fitting, time series data, and forecasting with Prophet. In particular, we'll cover the following:
 
-- XXX
-- XXX
+- Fitting Curves
+- Smoothing
+- Facebook Prophet
+
+Note: **The *prophet-diagnostics.ipynb* lab is completely optional.** Take a look if you like, but don't worry if you'd rather stick to the basics!
 
 ## Setup
 
