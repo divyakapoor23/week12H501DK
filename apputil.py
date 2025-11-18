@@ -4,7 +4,6 @@ import time
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-
 def update_board(current_board):
     # Pad with zeros so edge cells treat out-of-bounds as dead
     padded = np.pad(current_board, 1, mode='constant')
@@ -71,3 +70,12 @@ def play_game_recursive():
         return recurse(update_board(board), remaining - 1)
 
     return recurse(start_board, max_steps)
+
+
+if __name__ == "__main__":
+    # Simple demo: advance a random board a few steps and print the result.
+    board = np.random.randint(2, size=(5, 5))
+    print("Initial board:\n", board)
+    for i in range(3):
+        board = update_board(board)
+        print(f"\nBoard after step {i + 1}:\n", board)

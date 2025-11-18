@@ -1,0 +1,16 @@
+name: h501-week-12
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - ipykernel  # for Jupyter Notebook
+      - ipywidgets
+      - streamlit
+      - prophet
+      - plotly
+      - nbformat
+      - seaborn
+      - pandas
+      - numpy
+      - scipy
+      - statsmodels
