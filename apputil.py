@@ -6,8 +6,21 @@ import matplotlib.pyplot as plt
 
 
 def update_board(current_board):
-    # your code here ...
-    updated_board = current_board
+    # Pad with zeros so edge cells treat out-of-bounds as dead
+    padded = np.pad(current_board, 1, mode='constant')
+
+    # Sum neighbors in the 3x3 window around each cell (excluding the cell itself)
+    neighbor_count = (
+        padded[:-2, :-2] + padded[:-2, 1:-1] + padded[:-2, 2:] +
+        padded[1:-1, :-2] +                     padded[1:-1, 2:] +
+        padded[2:, :-2]  + padded[2:, 1:-1]  + padded[2:, 2:]
+    )
+
+    # Apply Game of Life rules
+    updated_board = (
+        (neighbor_count == 3) |
+        ((current_board == 1) & (neighbor_count == 2))
+    ).astype(int)
 
     return updated_board
 
@@ -39,3 +52,22 @@ def show_game(game_board, n_steps=10, pause=0.5):
         # wait for the next step
         if step + 1 < n_steps:
             time.sleep(pause)
+
+
+def play_game_recursive():
+    """
+    Play a fixed number of Conway's Game of Life steps on a random 10x10 board.
+
+    Returns:
+    numpy.ndarray
+        The board state after the recursive simulation.
+    """
+    max_steps = 10
+    start_board = np.random.randint(2, size=(10, 10))
+
+    def recurse(board, remaining):
+        if remaining == 0:
+            return board
+        return recurse(update_board(board), remaining - 1)
+
+    return recurse(start_board, max_steps)
